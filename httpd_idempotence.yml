@@ -1,0 +1,34 @@
+- hosts: httpd_idemp
+  tasks:
+          - name: "Install apche webserver"
+            package:
+                    name: "httpd"
+                    state: present
+
+
+
+          - name: "Create webpage"
+            copy:
+                    dest: "/var/www/html/index.html"
+                    content: "Testing 3rd time"
+            notify:
+                    - "httpd restart"
+
+          - name: "Apache conf"
+            template:
+                    dest: "/etc/httpd/conf.d/config.conf"
+                    src: "httpd_config.txt"
+            notify:
+                    - "httpd restart"
+
+          - name: "start httpd"
+            service:
+                    name: "httpd"
+                    state: started
+
+  handlers:
+          - name: "httpd restart"
+            service:
+                    name: "httpd"
+                    state: restarted
+
