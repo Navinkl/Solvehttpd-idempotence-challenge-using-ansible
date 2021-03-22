@@ -1,2 +1,2 @@
-# Solvehttpd-idempotence-challenge-using-ansible
+# Solveing httpd-idempotence-challenge-using-ansible
 Solving HTTPD service idempotence using ansible
